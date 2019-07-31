@@ -18,7 +18,7 @@ class Oystercard
   end
 
   def in_journey? # this is a predicate method, returns true/false
-    @in_journey
+    !!entry_station
   end
 
   def touch_in(station)
