@@ -15,14 +15,22 @@ describe Oystercard do
     it 'raises error on insufficient funds' do
       expect { subject.touch_in }.to raise_error Oystercard::ERR_LOW_BALANCE
     end
-
-    before(:each) { subject.top_up(50); subject.touch_in }
     it 'when card touched in, journey starts' do
+      subject.top_up(50); subject.touch_in
       expect(subject).to be_in_journey
     end
   end
 
+  describe '#touch_out' do
+    it 'deducts the correct amount from balance' do
+      subject.top_up(1)
+      subject.touch_in
+      expect { subject.touch_out }.to change { subject.balance }.by -Oystercard::FARE 
+    end
+  end
+
   it 'when card touched out, journey ends' do
+    subject.top_up(10)
     subject.touch_in
     subject.touch_out
     # could write the test with basic equality matcher:

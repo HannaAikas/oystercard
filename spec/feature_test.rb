@@ -15,9 +15,22 @@ puts Oystercard::MAX_VALUE # this should puts the max value we set
 
 card2 = Oystercard.new
 begin
-  card2.touch_in # expect to raise err0r
+  card2.touch_in # expect to raise error
 rescue StandardError => e
-  puts 'This is good, has raised correct error'
+  puts 'This is good, has raised correct error for touching in without enough money'
 else
-  puts 'This is bad, feature not written'
+  puts 'This is bad, feature not written to check touch in without enough money'
+end
+
+# step 10
+
+card3 = Oystercard.new
+card3.top_up(1)
+card3.touch_in
+begin
+  card3.touch_out # expect to raise error
+rescue
+  puts 'This is good, has raised an error when tried to touch out'
+else
+  puts 'This is bad, feature not written for touch_out checks'
 end
