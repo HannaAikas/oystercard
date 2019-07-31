@@ -1,4 +1,4 @@
-require "oystercard"
+require 'oystercard'
 
 describe Oystercard do
   it 'has a balance of nil' do
@@ -11,10 +11,17 @@ describe Oystercard do
     expect(subject.in_journey).to eq false
   end
 
-  it 'when card touched in, journey starts' do
-    subject.touch_in
-    expect(subject).to be_in_journey
+  describe '#touch_in' do
+    it 'raises error on insufficient funds' do
+      expect { subject.touch_in }.to raise_error Oystercard::ERR_LOW_BALANCE
+    end
+
+    before(:each) { subject.top_up(50); subject.touch_in }
+    it 'when card touched in, journey starts' do
+      expect(subject).to be_in_journey
+    end
   end
+
   it 'when card touched out, journey ends' do
     subject.touch_in
     subject.touch_out
@@ -29,13 +36,13 @@ describe Oystercard do
       expect(subject).to respond_to(:top_up).with(1).argument
     end
     it 'can top up card with amount of £5' do
-      expect{subject.top_up(5)}.to change {subject.balance}.by 5
+      expect { subject.top_up(5) }.to change { subject.balance }.by 5
     end
 
     it 'fails if balance exceeds maximum value' do
       max_value = Oystercard::MAX_VALUE
       subject.top_up(max_value)
-      expect{ subject.top_up(1) }.to raise_error "Maximum balance of #{max_value} exceeded"
+      expect { subject.top_up(1) }.to raise_error "Maximum balance of #{max_value} exceeded"
     end
   end
 
@@ -44,8 +51,7 @@ describe Oystercard do
       expect(subject).to respond_to(:deduct).with(1).argument
     end
     it 'can top up card with amount of £5' do
-      expect{subject.deduct(5)}.to change {subject.balance}.by -5
+      expect { subject.deduct(5) }.to change { subject.balance }.by -5
     end
   end
-
 end
