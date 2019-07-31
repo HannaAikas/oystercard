@@ -18,6 +18,9 @@ describe Oystercard do
   it 'when card touched out, journey ends' do
     subject.touch_in
     subject.touch_out
+    # could write the test with basic equality matcher:
+    # expect(subject.in_journey?).to eq false
+    # but instead we use a predicate matcher as it's more precise:
     expect(subject).not_to be_in_journey
   end
 
@@ -29,8 +32,10 @@ describe Oystercard do
       expect{subject.top_up(5)}.to change {subject.balance}.by 5
     end
 
-    it 'failes if top up amount is more than £90' do
-      expect{subject.top_up(91)}.to raise_error 'top up amount has exceeded limit of £90'
+    it 'fails if balance exceeds maximum value' do
+      max_value = Oystercard::MAX_VALUE
+      subject.top_up(max_value)
+      expect{ subject.top_up(1) }.to raise_error "Maximum balance of #{max_value} exceeded"
     end
   end
 
