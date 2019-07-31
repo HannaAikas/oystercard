@@ -36,15 +36,18 @@ require './lib/oystercard'
 # end
 
 # step 11
-puts '--  step 11  ------------------------------------------------------------------'
-station = 'Lambeth'
+puts '--  step 11 & 12 --------------------------------------------------------------'
+entry_station = 'Lambeth'
+exit_station = 'Waterloo'
 
 card4 = Oystercard.new
 
+puts card4.journeys #this should puts an empty journey 
 card4.top_up(50)
 puts 'Entry station not nil on creation' unless card4.entry_station.nil?
-card4.touch_in(station)
-puts 'Entry station not set on touch in' if card4.entry_station != station
-card4.touch_out
+card4.touch_in(entry_station)
+puts 'Entry station not set on touch in' if card4.entry_station != entry_station
+card4.touch_out(exit_station)
 puts 'Entry station not cleared' unless card4.entry_station.nil?
-puts '-- Step 11 complete  ----------------------------------------------------------'
+puts card4.journeys # this should puts my journey history
+puts '-- Step 11 & 12 complete  ----------------------------------------------------------'
