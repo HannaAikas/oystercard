@@ -16,6 +16,10 @@ describe Oystercard do
     expect(subject.entry_station).to eq(nil)
   end
 
+  it 'has no journeys on creation' do
+    expect(subject.journeys).to eq([])
+  end
+
   describe '#top_up' do
     it 'can top up card with amount of £5' do
       expect { subject.top_up(5) }.to change { subject.balance }.by 5
@@ -45,18 +49,28 @@ describe Oystercard do
       expect { subject.touch_out(station2) }.to change { subject.balance }.by -Oystercard::FARE
     end
 
-    it 'then card touched out, journey ends' do
-      subject.touch_out(station2)
-      expect(subject).not_to be_in_journey
-    end
-
     it 'has recorded entry_station' do
       expect(subject.entry_station).not_to be(nil)
     end
 
-    it 'clears entry_station on touch_out' do
-      subject.touch_out(station2)
-      expect(subject.entry_station).to eq(nil)
+    context 'then completed one journey' do
+      before(:each) { subject.touch_out(station2) }
+
+      it 'journey ends' do
+        expect(subject).not_to be_in_journey
+      end
+
+      it 'entry_Station back to nil' do
+        expect(subject.entry_station).to eq(nil)
+      end
+
+      it 'adds a journey to journeys' do
+        expect(subject.journeys.count).to eq(1)
+      end
+
+      it 'adds a specific journey to journeys' do
+        expect(subject.journeys[0]).to eq(entry_station: station1, exit_station: station2)
+      end
     end
   end
 end
