@@ -1,7 +1,7 @@
 require 'oystercard'
 
 describe Oystercard do
-  let(:station) { double('Station Name') }
+  let(:station) { double :station }
 
   it 'new card has a balance of 0' do
     expect(subject.balance).to eq 0
