@@ -1,4 +1,5 @@
 require './lib/oystercard'
+require './lib/station'
 
 # oystercard = Oystercard.new
 # oystercard.top_up(15)
@@ -53,5 +54,16 @@ require './lib/oystercard'
 # puts '-- Step 11 & 12 complete  ----------------------------------------------------------'
 
 # step 13
-station = Station.new("Lambeth",1)
-puts station
+# station = Station.new("Lambeth",1)
+# puts station
+
+# step 14
+journey = Journey.new
+puts journey
+
+card = Oystercard.new
+card.top_up(10)
+card.touch_in("Epping")
+journey.complete?
+journey.fare
+journey.finish
