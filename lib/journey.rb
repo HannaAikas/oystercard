@@ -23,8 +23,8 @@ class Journey
     @complete
   end
 
-  def fare
-    PENALTY_FARE
+  def check_fare
+    @fare
   end
 
   def touch_in(entry_station)
@@ -33,11 +33,13 @@ class Journey
     @in_journey = true
   end
 
-  # def touch_out(exit_station)
+  def touch_out(exit_station)
   #   deduct(Journey::FARE)
   #   @journeys << {entry_station: entry_station, exit_station: exit_station}
-  #   @entry_station = nil
-  #   @in_journey = false
-  # end
+    @entry_station = nil
+    @in_journey = false
+    @fare = FARE
+    @complete = true
+  end
 
 end
