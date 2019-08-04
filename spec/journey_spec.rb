@@ -27,9 +27,6 @@ describe Journey do
     it 'knows the entry station' do
       expect(subject.entry_station).not_to be nil
     end
-    it 'is in journey' do
-      expect(subject).to be_in_journey
-    end
 
     context 'once user finishes journey' do
       before(:each) do

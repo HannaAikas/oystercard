@@ -8,14 +8,6 @@ describe Oystercard do
     expect(subject.balance).to eq 0
   end
 
-  # it 'starts off with in_journey being false' do
-  #   expect(subject.in_journey).to eq false
-  # end
-  #
-  # it 'has no entry station on creation' do
-  #   expect(subject.entry_station).to eq(nil)
-  # end
-
   it 'has no journeys on creation' do
     expect(subject.journeys).to eq([])
   end
@@ -41,24 +33,12 @@ describe Oystercard do
   # context 'user is touched in' do
   #   before(:each) { subject.top_up(50); subject.touch_in(station1) }
   #
-  #   it 'journey has started' do
-  #     expect(subject).to be_in_journey
-  #   end
-  #
   #   it 'deducts the correct amount from balance' do
   #     expect { subject.touch_out(station2) }.to change { subject.balance }.by -Journey::FARE
   #   end
   #
-  #   it 'has recorded entry_station' do
-  #     expect(subject.entry_station).not_to be(nil)
-  #   end
-  #
   #   context 'then completed one journey' do
   #     before(:each) { subject.touch_out(station2) }
-  #
-  #     it 'journey ends' do
-  #       expect(subject).not_to be_in_journey
-  #     end
   #
   #     it 'entry_Station back to nil' do
   #       expect(subject.entry_station).to eq(nil)

@@ -70,6 +70,9 @@ puts my_journey.check_fare # should still return penalty fare as we haven't touc
 my_journey.touch_out("station2")
 puts my_journey.complete? # should return true
 puts my_journey.check_fare # should return the normal fare of £2
+puts '-- Step 14 complete  ----------------------------------------------------------'
+
+# FOR FUTURE TESTS:
 # puts my_oystercard.deduct(fare) # should get the fare from my_journey and deduct it
 # puts my_oystercard.journeys # should return an array of journeys that contains a hash {entry_station: "station1", exit_station: "station2"}
 # puts my_oystercard.balance # should return 48 i.e. 50 top up minus 2 for fare
