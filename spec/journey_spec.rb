@@ -25,7 +25,7 @@ describe Journey do
       expect(subject.check_fare).to eq Journey::PENALTY_FARE
     end
     it 'knows the entry station' do
-      expect(subject.entry_station).not_to be nil
+      expect(subject.entry_station).to eq station1
     end
 
     context 'once user finishes journey' do
