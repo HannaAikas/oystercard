@@ -58,12 +58,18 @@ require './lib/station'
 # puts station
 
 # step 14
-journey = Journey.new
-puts journey
-
-card = Oystercard.new
-card.top_up(10)
-card.touch_in("Epping")
-journey.complete?
-journey.fare
-journey.finish
+puts '-- step 14 ----------------------------------------------------------'
+my_oystercard = Oystercard.new
+my_oystercard.top_up(50)
+my_journey = Journey.new
+puts my_journey.complete? # should return false
+puts my_journey.fare # should return penalty fare
+my_jouney.touch_in("station1")
+puts my_jouney.fare # should still return penalty fare as we haven't touched out
+my_jouney.finish("station2")
+puts my_jouney.exit_station # should return "station2"
+puts my_journey.complete? # should return true
+puts my_jouney.fare # should return the normal fare of £2
+puts my_oystercard.deduct(fare) # should get the fare from my_journey and deduct it
+puts my_oystercard.journeys # should return an array of journeys that contains a hash {entry_station: "station1", exit_station: "station2"}
+puts my_oystercard.balance # should return 48 i.e. 50 top up minus 2 for fare 

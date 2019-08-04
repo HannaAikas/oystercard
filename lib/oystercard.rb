@@ -2,7 +2,6 @@ class Oystercard
   MAX_VALUE = 90
   ERR_LOW_BALANCE = 'Error - insufficient balance'.freeze
   MIN_BALANCE = 1
-  FARE = 2
 
   attr_reader :balance, :in_journey, :entry_station, :journeys
 
@@ -31,7 +30,7 @@ class Oystercard
   end
 
   def touch_out(exit_station)
-    deduct(FARE)
+    deduct(Journey::FARE)
     @journeys << {entry_station: entry_station, exit_station: exit_station}
     @entry_station = nil
     @in_journey = false

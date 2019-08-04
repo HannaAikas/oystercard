@@ -46,7 +46,7 @@ describe Oystercard do
     end
 
     it 'deducts the correct amount from balance' do
-      expect { subject.touch_out(station2) }.to change { subject.balance }.by -Oystercard::FARE
+      expect { subject.touch_out(station2) }.to change { subject.balance }.by -Journey::FARE
     end
 
     it 'has recorded entry_station' do

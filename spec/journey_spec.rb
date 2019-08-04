@@ -1,19 +1,12 @@
 require 'journey'
-require 'oystercard'
 
 describe Journey do
-
-  context 'user has topped up, touched in and touched out' do
-    card = Oystercard.new
-    before(:each) { card.top_up(10); card.touch_in("Aldgate"); card.touch_out("Ealing") }
-  
-
-    it 'calculates a fare' do
-      expect(subject.fare).to eq 2
-    end
-
-    it 'knows if a journey is complete or not' do
+  context 'before starting a journey' do
+    it 'shows whether journey is complete' do
       expect(subject).not_to be_complete
+    end
+    it 'shows the penalty fare as the default fare' do
+      expect(subject.fare).to eq Journey::PENALTY_FARE
     end
   end
 end
