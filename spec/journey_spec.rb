@@ -8,5 +8,8 @@ describe Journey do
     it 'shows the penalty fare as the default fare' do
       expect(subject.fare).to eq Journey::PENALTY_FARE
     end
+    it 'is able to start the journey by touching in' do
+      expect(subject).to respond_to :touch_in
+    end
   end
 end
