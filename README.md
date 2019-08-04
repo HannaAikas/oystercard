@@ -1,3 +1,10 @@
+# Progress Update - As at 4 Aug 2019
+* Challenge completed up to step 13
+* Step 14 involves splitting out the code from Oystercard class into 2 classes (Oystercard and Journey)
+* Whilst the classes were split out and tests pass, it needs to be re-done
+* The issue is that the deduct method in Oystercard works closely  with touch_in and touch_out, so the latter need to be moved from Journey class back to Oystercard class
+
+# ORIGINAL INSTRUCTIONS FROM MAKERS:
 # Oystercard Challenge
 
 This week's challenge will start with going back over the basics we covered last week in Boris Bikes, giving you the chance to reinforce what you learned last week. You'll then be challenged to build a more complex system which should really stretch your skills in Ruby, TDD and object-oriented design.
