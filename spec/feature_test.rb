@@ -66,7 +66,7 @@ my_journey = Journey.new
 puts my_journey.complete? # should return false
 puts my_journey.check_fare # should return penalty fare of £6
 my_journey.touch_in("station1")
-puts my_journey.check_fare # should still return penalty fare as we haven't touched out
+puts my_journey.check_fare # should still return penalty fare of £6 as we haven't touched out
 my_journey.touch_out("station2")
 puts my_journey.complete? # should return true
 puts my_journey.check_fare # should return the normal fare of £2
